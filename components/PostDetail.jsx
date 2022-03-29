@@ -3,45 +3,7 @@ import moment from 'moment'
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
 const PostDetail = ({ post }) => {
-  const getContentFragment = (index, text, obj, type) => {
-    let modifiedText = text;
-
-    if (obj) {
-      if (obj.bold) {
-        modifiedText = (<b key={index}>{text}</b>);
-      }
-
-      if (obj.italic) {
-        modifiedText = (<em key={index}>{text}</em>);
-      }
-
-      if (obj.underline) {
-        modifiedText = (<u key={index}>{text}</u>);
-      }
-    }
-
-    switch (type) {
-      case 'heading-three':
-        return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
-      case 'paragraph':
-        return <p key={index} className="mb-8">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
-      case 'heading-four':
-        return <h4 key={index} className="text-md font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
-      case 'image':
-        return (
-          <img
-            key={index}
-            alt={obj.title}
-            height={obj.height}
-            width={obj.width}
-            src={obj.src}
-          />
-        );
-      default:
-        return modifiedText;
-    }
-  };
-
+    console.log(post.content.raw.children)  
 
   return (
     <>
@@ -69,7 +31,21 @@ const PostDetail = ({ post }) => {
                   </div>
               </div>
               <h1 className='mb-8 text-3xl font-semibold'>{post.title}</h1>
-              <RichText content={post.content.raw.children} />
+              <RichText 
+              content={post.content.raw.children} 
+              renderers={
+                {
+                  h1: ({children}) => <h1 className="py-3 text-2xl font-semibold">{children}</h1>,
+                  h2: ({children}) => <h2 className="py-3 text-2xl font-semibold">{children}</h2>,
+                  h3: ({children}) => <h3 className="py-3 text-2xl font-semibold">{children}</h3>,
+                  p: ({children}) => <p className="pb-1">{children}</p>,
+                  code: ({children}) => <code className="bg-gray-200 px-2 py-1 text-sm">{children}</code>,
+                  code_block: ({children}) => <pre className="bg-gray-200 width-100 px-4 my-4 whitespace-pre-wrap py-4 text-sm">{children}</pre>,
+                  class: ({children}) => <p className="py-5">{children}</p>,
+                  a: ({children}) => <a className="text-blue-500">{children}</a>
+                }
+              }
+              />
           </div>
       </div>
     </>

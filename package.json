@@ -9,7 +9,7 @@
     "@graphcms/rich-text-react-renderer": "^0.4.3",
     "dotenv": "^16.0.0",
     "graphql": "^16.3.0",
-    "graphql-request": "^4.1.0",
+    "graphql-request": "^4.2.0",
     "gsap": "^3.9.1",
     "html-react-parser": "^1.4.9",
     "moment": "^2.29.1",
