@@ -42,7 +42,9 @@ const PostDetail = ({ post }) => {
                   code: ({children}) => <code className="bg-gray-200 px-2 py-1 text-sm">{children}</code>,
                   code_block: ({children}) => <pre className="bg-gray-200 width-100 px-4 my-4 whitespace-pre-wrap py-4 text-sm">{children}</pre>,
                   class: ({children}) => <p className="py-5">{children}</p>,
-                  a: ({children}) => <a className="text-blue-500">{children}</a>
+                  a: ({children}) => <a className="text-blue-500">{children}</a>,
+                  ul: ({children}) => <ul className="list-disc py-4">{children}</ul>,
+                  li: ({children}) => <li className="py-2 ml-4">{children}</li>,
                 }
               }
               />
